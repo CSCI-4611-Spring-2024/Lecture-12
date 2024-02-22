@@ -35,7 +35,7 @@ export class App extends gfx.GfxApp
         this.scene.add(axes);
 
         // Create an ambient light
-        const ambientLight = new gfx.AmbientLight(new gfx.Color(0.25, 0.25, 0.25));
+        const ambientLight = new gfx.AmbientLight(new gfx.Color(0.1, 0.1, 0.1));
         this.scene.add(ambientLight);
 
         // Create a directional light
