@@ -80,8 +80,8 @@ export class App extends gfx.GfxApp
             normals.push(new gfx.Vector3(Math.cos(angle), 0, Math.sin(angle)));
         
             // Create two uvs that make up each column
-            uvs.push(new gfx.Vector2(numSegments-i/numSegments, 0));
-            uvs.push(new gfx.Vector2(numSegments-i/numSegments, 1));
+            uvs.push(new gfx.Vector2((numSegments-i)/numSegments, 0));
+            uvs.push(new gfx.Vector2((numSegments-i)/numSegments, 1));
         }
 
         for(let i=0; i < numSegments; i++)
