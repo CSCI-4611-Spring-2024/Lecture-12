@@ -43,8 +43,11 @@ export class App extends gfx.GfxApp
         directionalLight.position.set(-2, 1, 0)
         this.scene.add(directionalLight);
 
+        const cylinderMaterial = new gfx.GouraudMaterial();
+        cylinderMaterial.texture = new gfx.Texture('./campbells.png');
+        this.cylinder.material = cylinderMaterial;
+
         this.createCylinderMesh(this.cylinder, 20, 2);
-        //this.cylinder.material = new gfx.WireframeMaterial();
         this.scene.add(this.cylinder);
     }
 
@@ -59,6 +62,7 @@ export class App extends gfx.GfxApp
     {
         const vertices: gfx.Vector3[] = [];
         const normals: gfx.Vector3[] = [];
+        const uvs: gfx.Vector2[] = [];
         const indices: number[] = [];
 
         const angleIncrement = (Math.PI * 2) / numSegments;
@@ -74,6 +78,10 @@ export class App extends gfx.GfxApp
             // Create two normals that make up each column
             normals.push(new gfx.Vector3(Math.cos(angle), 0, Math.sin(angle)));
             normals.push(new gfx.Vector3(Math.cos(angle), 0, Math.sin(angle)));
+        
+            // Create two uvs that make up each column
+            uvs.push(new gfx.Vector2(numSegments-i/numSegments, 0));
+            uvs.push(new gfx.Vector2(numSegments-i/numSegments, 1));
         }
 
         for(let i=0; i < numSegments; i++)
@@ -84,6 +92,7 @@ export class App extends gfx.GfxApp
 
         mesh.setVertices(vertices);
         mesh.setNormals(normals);
+        mesh.setTextureCoordinates(uvs);
         mesh.setIndices(indices);
     }
 }
